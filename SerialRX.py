@@ -19,6 +19,9 @@ back=   b'3BCD58C8'
 exit=   b'974F362'
 menu=   b'ED45D744'
 
+#USB serial link
+USBLink='/dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0'
+
 def SelectButton(button):
     return{
         up:     Key.up,
@@ -40,7 +43,7 @@ keyboard=Controller()
 while True:
     try:
         time.sleep(0.005) #sleep 5 ms
-        ser = serial.Serial('/dev/ttyUSB0')  # open serial port
+        ser = serial.Serial(USBLink)  # open serial port
         input_message=ser.readline().rstrip()
         print(input_message)
         button=SelectButton(input_message)
